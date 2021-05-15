@@ -20,17 +20,12 @@ class UsersRepository implements IUsersRepository {
 
   create({ name, email }: ICreateUserDTO): User {
     const user = new User()
-    const userAlreadyExists = this.users.find(user => user.email === email)
-   
-    // if (userAlreadyExists) {
-    //   throw new Error("Mensagem do erro")
-    // }
-
+ 
     Object.assign(user, {
       name,
       email,
-      created_at: new Date(),
-      updated_at: new Date()
+      created_at: new Date,
+      updated_at: new Date
     })
 
     this.users.push(user)
@@ -39,30 +34,17 @@ class UsersRepository implements IUsersRepository {
 
   findById(id: string): User | undefined {
     const user = this.users.find(user => user.id === id)
-
-    if (!user) {
-      throw new Error("Mensagem do erro");
-    }
-
     return user
   }
 
   findByEmail(email: string): User | undefined {
     const user = this.users.find(user => user.email === email)
 
-    if (!user) {
-      throw new Error("Mensagem do erro");
-    }
-
     return user
   }
 
   turnAdmin(receivedUser: User): User {
     const user = this.users.find(user => user.id === receivedUser.id)
-
-    if (!user) {
-      throw new Error("Mensagem do erro");
-    }
 
     user.admin = true
     return user
