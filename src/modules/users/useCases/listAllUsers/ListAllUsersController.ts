@@ -9,11 +9,11 @@ class ListAllUsersController {
     try {
       const { id } = request.body
       const all = this.listAllUsersUseCase.execute(id)
-      return response.send(all)  
+      return response.send(all)
     } catch (error) {
-      return response.status(400).send()
+      return response.status(400).json({error: error.message})
     }
-    
+
   }
 }
 
